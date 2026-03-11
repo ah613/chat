@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "965994992585",
+    "project_id": "chat-boys-b466d",
+    "storage_bucket": "chat-boys-b466d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965994992585:android:9ab8a5a77385c999d0ce18",
+        "android_client_info": {
+          "package_name": "com.example.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965994992585-p4s0d5rv83200udjfkdc23atra6tjf4i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMm4xcGDjzMTRYWav4bT6tmYTFgJDEvNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965994992585-p4s0d5rv83200udjfkdc23atra6tjf4i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "965994992585-mgtjg7tphaq1dus9g7uep6rl77pj2abg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

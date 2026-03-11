@@ -1,0 +1,36 @@
+type User @table {
+  username: String!
+  email: String!
+  createdAt: Timestamp!
+  profilePictureUrl: String
+  lastOnline: Timestamp
+}
+
+type ChatRoom @table {
+  name: String!
+  createdAt: Timestamp!
+  description: String
+  isPrivate: Boolean
+}
+
+type Membership @table(key: ["user", "chatRoom"]) {
+  user: User!
+  chatRoom: ChatRoom!
+  joinedAt: Timestamp!
+  isAdmin: Boolean
+}
+
+type Message @table {
+  content: String!
+  sentAt: Timestamp!
+  sender: User!
+  chatRoom: ChatRoom
+  receiver: User
+  isRead: Boolean
+}
+
+type DirectMessageConversation @table(key: ["user1", "user2"]) {
+  user1: User!
+  user2: User!
+  startedAt: Timestamp!
+}

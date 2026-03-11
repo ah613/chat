@@ -1,0 +1,59 @@
+mutation CreateChatRoom($name: String!, $description: String, $isPrivate: Boolean) @auth(level: USER, insecureReason: "This operation allows any logged-in user to create a chat room.") {
+  chatRoom_insert(data: {
+    name: $name,
+    description: $description,
+    isPrivate: $isPrivate,
+    createdAt_expr: "request.time"
+  }) {
+    id
+  }
+}
+
+query GetMyChatRooms @auth(level: USER) {
+  chatRooms(where: {
+    memberships_on_chatRoom: {
+      exist: {
+        user: {id_expr: "auth.uid"}
+      }
+    }
+  }) {
+    id
+    name
+    description
+    isPrivate
+    createdAt
+    memberships_on_chatRoom {
+      isAdmin
+      user {
+        username
+      }
+    }
+  }
+}
+
+mutation SendMessageToChatRoom($chatRoomId: UUID!, $content: String!) @auth(level: USER) {
+  message_insert(data: {
+    chatRoomId: $chatRoomId,
+    content: $content,
+    senderId_expr: "auth.uid",
+    sentAt_expr: "request.time",
+    isRead: false
+  }) {
+    id
+  }
+}
+
+query GetChatRoomMessages($chatRoomId: UUID!) @auth(level: USER) {
+  messages(where: {
+    chatRoomId: {eq: $chatRoomId}
+  }, orderBy: [{sentAt: ASC}]) {
+    id
+    content
+    sentAt
+    sender {
+      id
+      username
+    }
+    isRead
+  }
+}

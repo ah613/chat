@@ -1,0 +1,88 @@
+mutation SeedData @transaction @auth(level: USER, insecureReason: "Seed data operations are only accessible to authenticated users for initial setup.") {
+  user_insertMany(data: [
+    {
+      id: "b4d7f0e3-4d6d-4e9f-8c3a-0b2a7e5f1d0a",
+      username: "chatty_user1",
+      email: "user1@example.com",
+      createdAt: "2024-01-01T10:00:00Z"
+    },
+    {
+      id: "a1c9e8d7-b6a5-4f3e-2d1c-9b8a7f6e5d4c",
+      username: "friendly_user2",
+      email: "user2@example.com",
+      createdAt: "2024-01-01T10:05:00Z"
+    },
+    {
+      id: "f9e2d1c8-a7b6-5e4d-3c2b-1a0f9e8d7c6b",
+      username: "group_lover3",
+      email: "user3@example.com",
+      createdAt: "2024-01-01T10:10:00Z"
+    }
+  ])
+  chatRoom_insertMany(data: [
+    {
+      id: "c1a2b3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+      name: "General Chat",
+      createdAt: "2024-01-01T10:15:00Z",
+      description: "A general discussion room.",
+      isPrivate: false
+    },
+    {
+      id: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+      name: "Private Corner",
+      createdAt: "2024-01-01T10:20:00Z",
+      description: "A private chat for close friends.",
+      isPrivate: true
+    }
+  ])
+  membership_insertMany(data: [
+    {
+      userId: "b4d7f0e3-4d6d-4e9f-8c3a-0b2a7e5f1d0a",
+      chatRoomId: "c1a2b3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+      joinedAt: "2024-01-01T10:25:00Z",
+      isAdmin: true
+    },
+    {
+      userId: "a1c9e8d7-b6a5-4f3e-2d1c-9b8a7f6e5d4c",
+      chatRoomId: "c1a2b3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+      joinedAt: "2024-01-01T10:30:00Z",
+      isAdmin: false
+    },
+    {
+      userId: "f9e2d1c8-a7b6-5e4d-3c2b-1a0f9e8d7c6b",
+      chatRoomId: "d5e6f7a8-b9c0-1d2e-3f4a-5b6c7d8e9f0a",
+      joinedAt: "2024-01-01T10:35:00Z",
+      isAdmin: true
+    }
+  ])
+  directMessageConversation_insertMany(data: [
+    {
+      user1Id: "b4d7f0e3-4d6d-4e9f-8c3a-0b2a7e5f1d0a",
+      user2Id: "a1c9e8d7-b6a5-4f3e-2d1c-9b8a7f6e5d4c",
+      startedAt: "2024-01-01T10:40:00Z"
+    }
+  ])
+  message_insertMany(data: [
+    {
+      senderId: "b4d7f0e3-4d6d-4e9f-8c3a-0b2a7e5f1d0a",
+      chatRoomId: "c1a2b3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+      content: "Hello everyone!",
+      sentAt: "2024-01-01T10:45:00Z",
+      isRead: false
+    },
+    {
+      senderId: "a1c9e8d7-b6a5-4f3e-2d1c-9b8a7f6e5d4c",
+      chatRoomId: "c1a2b3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+      content: "Hi chatty_user1!",
+      sentAt: "2024-01-01T10:50:00Z",
+      isRead: false
+    },
+    {
+      senderId: "b4d7f0e3-4d6d-4e9f-8c3a-0b2a7e5f1d0a",
+      receiverId: "a1c9e8d7-b6a5-4f3e-2d1c-9b8a7f6e5d4c",
+      content: "How are you?",
+      sentAt: "2024-01-01T10:55:00Z",
+      isRead: false
+    }
+  ])
+}
